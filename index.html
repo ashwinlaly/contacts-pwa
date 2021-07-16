@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/materialize.min.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>PWA</title>
+</head>
+<body>
+    
+  <nav class="nav-extended">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">Logo</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/pages/about.html">About</a></li>
+        <li><a href="/pages/favorites.html">Favorites</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="/">Home</a></li>
+    <li><a href="/pages/about.html">About</a></li>
+    <li><a href="/pages/favorites.html">Favorites</a></li>
+  </ul>
+
+  <div class="container">
+    <ul class="contacts collection with-header">
+      <li class="collection-header">
+        <h2>Contacts</h2>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+  </div>
+        
+
+  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#create_modal">Modal</a>
+  <!-- Modal Structure -->
+  <div id="create_modal" class="modal">
+    <form action="">
+    <div class="modal-content">
+      <h4>Create Contact</h4>
+        <input type="text" placeholder="Enter Person name" name="name"/>
+        <input type="number" placeholder="Enter Number" name="number"/>
+        <p class="error"></p>
+      </div>
+      <div class="modal-footer">
+        <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
+        <button class="btn"> Create</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal Structure -->
+  <!-- <div id="edit_modal" class="modal">
+    <div class="modal-content">
+      <h4>Update Contact</h4>
+      <form action="">
+        <input type="text" placeholder="Enter Person name" name="name"/>
+        <input type="number" placeholder="Enter Number" name="number"/>
+        <button class="btn"> Create</button>
+        <p class="error"></p>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div> -->
+
+  <script src="/js/materialize.min.js"></script>
+  <script src="/js/ui.js"></script>
+</body>
+</html>
