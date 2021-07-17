@@ -1,5 +1,5 @@
-const staticContent = 'staticContent';
-const dynamicContent = 'dynamicContent';
+const staticCache = 'staticCache';
+const dynamicCache = 'dynamicCache';
 const assets = [
     "/",
     "/js/ui.js",
@@ -24,7 +24,7 @@ const limitCache = (cacheName, nums) => {
 // Service Worker Installing
 self.addEventListener("install", e => {
     e.waitUntil(
-        caches.open(staticContent).then(cache => {
+        caches.open(staticCache).then(cache => {
             cache.addAll(assets)
         })
     )
@@ -38,9 +38,9 @@ self.addEventListener("fetch", e => {
     e.respondWith(
         caches.match(e.request).then(staticRes => {
             return staticRes || fetch(e.request).then(dynamicRes => {
-                return caches.open(dynamicContent).then(cache => {
+                return caches.open(dynamicCache).then(cache => {
                     cache.put(e.request.url, dynamicRes.clone())
-                    limitCache(dynamicContent, 2)
+                    limitCache(dynamicCache, 2)
                     return dynamicRes
                 })
             })
