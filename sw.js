@@ -11,6 +11,16 @@ const assets = [
     "/pages/fallback.html"
 ];
 
+const limitCache = (cacheName, nums) => {
+    caches.open(cacheName).then(cache => {
+        caches.keys().then(keys => {
+            if(keys.length > 0){
+                cache.delete(keys[0]).then(limitCache(cacheName, nums))
+            }
+        })
+    });
+}
+
 // Service Worker Installing
 self.addEventListener("install", e => {
     e.waitUntil(
@@ -28,8 +38,9 @@ self.addEventListener("fetch", e => {
     e.respondWith(
         caches.match(e.request).then(staticRes => {
             return staticRes || fetch(e.request).then(dynamicRes => {
-                caches.open(dynamicContent).then(cache => {
+                return caches.open(dynamicContent).then(cache => {
                     cache.put(e.request.url, dynamicRes.clone())
+                    limitCache(dynamicRes, 2)
                     return dynamicRes
                 })
             })
