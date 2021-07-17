@@ -40,7 +40,7 @@ self.addEventListener("fetch", e => {
             return staticRes || fetch(e.request).then(dynamicRes => {
                 return caches.open(dynamicContent).then(cache => {
                     cache.put(e.request.url, dynamicRes.clone())
-                    limitCache(dynamicRes, 2)
+                    limitCache(dynamicContent, 2)
                     return dynamicRes
                 })
             })
