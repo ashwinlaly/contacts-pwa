@@ -1,4 +1,4 @@
-var contactForm = document.querySelector(".add-contact form")
+var contactForm = document.querySelector("#create_modal form")
 var contactModal = document.querySelector("#create_modal")
 
 contactForm.addEventListener("submit", e => {
