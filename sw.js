@@ -7,7 +7,8 @@ const assets = [
     "/index.html",
     "/js/materialize.min.js",
     "/css/materialize.min.css",
-    "https://fonts.googleapis.com/icon?family=Material+Icons"
+    "https://fonts.googleapis.com/icon?family=Material+Icons",
+    "/pages/fallback.html"
 ];
 
 // Service Worker Installing
@@ -32,6 +33,6 @@ self.addEventListener("fetch", e => {
                     return dynamicRes
                 })
             })
-        })
+        }).catch(() => caches.match("/pages/fallback.html"))
     )
 });
