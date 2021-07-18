@@ -1,3 +1,12 @@
+db.enablePersistence().catch(err => {
+    if(err.code == "failed-precondition") {
+        console.log("multiple tabs opened")
+    } else if(err.code == "unimplemented"){
+        console.log("browsert not supported")
+    }
+});
+
+
 var contactForm = document.querySelector("#create_modal form")
 var contactModal = document.querySelector("#create_modal")
 
@@ -8,7 +17,7 @@ contactForm.addEventListener("submit", e => {
         phone: contactForm.phone.value
     }
 
-    db.collection("contact-pwa").add(contact).then(() => {
+    db.collection("contact").add(contact).then(() => {
         contactForm.reset();
         var instance = M.Modal.getInstance(contactModal);
         instance.close();
@@ -17,3 +26,14 @@ contactForm.addEventListener("submit", e => {
         contactForm.querySelector(".error").textContent = error;
     });
 })
+
+db.collection("contact").onSnapshot(snapshot => {
+    snapshot.docChanges().forEach(change => {
+        if(change.type === "added") {
+            renderContact(change.doc.data(), change.doc.id)
+        }
+        if(change.type === "removed") {
+            
+        }
+    });
+});

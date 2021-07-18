@@ -35,15 +35,17 @@ self.addEventListener("activate", e => {
 });
 
 self.addEventListener("fetch", e => {
-    e.respondWith(
-        caches.match(e.request).then(staticRes => {
-            return staticRes || fetch(e.request).then(dynamicRes => {
-                return caches.open(dynamicCache).then(cache => {
-                    cache.put(e.request.url, dynamicRes.clone())
-                    limitCache(dynamicCache, 2)
-                    return dynamicRes
+    if(e.request.url.indexOf("firestore.googleapis.com") === -1) {  // prevent service worker to send request for Firebase api call
+        e.respondWith(
+            caches.match(e.request).then(staticRes => {
+                return staticRes || fetch(e.request).then(dynamicRes => {
+                    return caches.open(dynamicCache).then(cache => {
+                        cache.put(e.request.url, dynamicRes.clone())
+                        limitCache(dynamicCache, 2)
+                        return dynamicRes
+                    })
                 })
-            })
-        }).catch(() => caches.match("/pages/fallback.html"))
-    )
+            }).catch(() => caches.match("/pages/fallback.html"))
+        )
+    }
 });
