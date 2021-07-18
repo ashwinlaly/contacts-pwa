@@ -6,7 +6,6 @@ db.enablePersistence().catch(err => {
     }
 });
 
-
 var contactForm = document.querySelector("#create_modal form")
 var contactModal = document.querySelector("#create_modal")
 
@@ -37,3 +36,17 @@ db.collection("contact").onSnapshot(snapshot => {
         }
     });
 });
+
+const contactContainer = document.querySelector(".contacts");
+contactContainer.addEventListener("click", e => {
+    const id = e.target.parentElement.getAttribute("data-id");
+    if(e.target.textContent === "edit") {
+
+    } else if(e.target.textContent === "star_border" || e.target.textContent === "star") {
+
+    } else if(e.target.textContent === "delete_outline") {
+        db.collection("contact").doc(id).delete();
+    } else {
+        
+    }
+})
