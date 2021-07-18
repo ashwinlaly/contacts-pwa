@@ -46,6 +46,7 @@ contactContainer.addEventListener("click", e => {
 
     } else if(e.target.textContent === "delete_outline") {
         db.collection("contact").doc(id).delete();
+        removeContact(id);
     } else {
         
     }
