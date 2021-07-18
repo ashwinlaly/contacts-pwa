@@ -25,6 +25,6 @@ let renderContact = (data, id) => {
 }
 
 let removeContact = (id)  => {
-    const contact = document.querySelector(`.contact['data-id=${id}']`);
+    const contact = document.querySelector(`.contact[data-id=${id}]`);
     contact.remove();
 }
