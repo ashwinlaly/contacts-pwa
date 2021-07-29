@@ -6,3 +6,6 @@
 # Generate Android Studio Icon
  - https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html
  - https://appicon.co/
+
+## Application URL
+ - https://heuristic-benz-c386d5.netlify.app/index.html
